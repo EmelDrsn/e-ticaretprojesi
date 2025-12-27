@@ -7,6 +7,8 @@ import { ShoppingCart } from "lucide-react";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 
+
+
 function App() {
   const handleToast = () => {
     toast.success("Hoş geldin! 🎉", {

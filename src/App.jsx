@@ -1,50 +1,37 @@
-import { ToastContainer, toast } from "react-toastify";
+import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Switch, Route, Link } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+import PageContent from "./layout/PageContent";
 
-import Products from "./pages/Products";
-import Cart from "./pages/Cart";
-
-
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const handleToast = () => {
-    toast.success("Hoş geldin! 🎉", {
-      position: "top-right",
-      autoClose: 1500,
-    });
-  };
-
   return (
-    <div>
-      <nav style={{ display: "flex", gap: "20px", padding: "10px" }}>
-        <Link to="/">Ana Sayfa</Link>
-        <Link to="/products">Ürünler</Link>
-        <Link to="/cart">
-          Sepet <ShoppingCart size={18} />
-        </Link>
-        <button onClick={handleToast}>Bildirim Gönder</button>
-      </nav>
+    <div className="min-h-screen flex flex-col">
+      {/* Her sayfada gözüken üst menü */}
+      <Header />
 
-      <Switch>
-        <Route exact path="/">
-          <h2>Ana Sayfa</h2>
-        </Route>
+      {/* Sayfa içeriği */}
+      <PageContent>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-        <Route path="/products">
-          <Products />
-        </Route>
+          {/* Şimdilik sadece HomePage var */}
+          <Route>
+            <h2 className="text-center mt-10 text-xl">
+              404 - Sayfa Bulunamadı
+            </h2>
+          </Route>
+        </Switch>
+      </PageContent>
 
-        <Route path="/cart">
-          <Cart />
-        </Route>
-
-        <Route>
-          <h2>404 - Sayfa Bulunamadı</h2>
-        </Route>
-      </Switch>
+      {/* Alt bilgi */}
+      <Footer />
 
       <ToastContainer />
     </div>
